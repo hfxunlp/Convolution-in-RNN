@@ -13,10 +13,10 @@
 -- its own dropouts. First, try 0.25 for p as Gal (2016) suggested, presumably, 
 -- because of summations of two parts in GRUs connections. 
 ------------------------------------------------------------------------
-assert(not nn.GRU, "update nnx package : luarocks install nnx")
+assert(not nn.ConvGRU, "update nnx package : luarocks install nnx")
 local ConvGRU, parent = torch.class('nn.ConvGRU', 'nn.AbstractRecurrent')
 
-function ConvGRU:__init(inputSize, outputSize, rho, p, mono, ConvNN)
+function ConvGRU:__init(inputSize, outputSize, ConvNN, rho, p, mono)
 	parent.__init(self, rho or 9999)
 	self.p = p or 0
 	if p and p ~= 0 then
@@ -24,6 +24,7 @@ function ConvGRU:__init(inputSize, outputSize, rho, p, mono, ConvNN)
 	end
 	self.mono = mono or false
 	self.inputSize = inputSize
+	self.hiddenSize = hiddenSize
 	self.outputSize = outputSize	
 	-- build the model
 	self.recurrentModule = self:buildModel(ConvNN)
