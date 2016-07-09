@@ -8,7 +8,7 @@
 -- Expects 1D or 2D input.
 -- The first input in sequence uses zero value for cell and hidden state
 ------------------------------------------------------------------------
-assert(not nn.LSTM, "update nnx package : luarocks install nnx")
+assert(not nn.ConvLSTM, "update nnx package : luarocks install nnx")
 local ConvLSTM, parent = torch.class('nn.ConvLSTM', 'nn.AbstractRecurrent')
 
 function ConvLSTM:__init(inputSize, outputSize, rho, cell2gate, ConvNN)
