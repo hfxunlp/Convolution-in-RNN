@@ -16,7 +16,7 @@
 assert(not nn.ConvGRU, "update nnx package : luarocks install nnx")
 local ConvGRU, parent = torch.class('nn.ConvGRU', 'nn.AbstractRecurrent')
 
-function ConvGRU:__init(inputSize, outputSize, ConvNN, rho, p, mono)
+function ConvGRU:__init(inputSize, outputSize, rho, p, mono, ConvNN)
 	parent.__init(self, rho or 9999)
 	self.p = p or 0
 	if p and p ~= 0 then
